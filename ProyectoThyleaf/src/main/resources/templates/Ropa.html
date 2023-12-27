@@ -14,7 +14,31 @@
         justify-content:center;
         align-items:center;
         flex-direction:column;
-        background-color:#2f2f2f
+        background-color:#f31e00;
+        position: relative;
+    }
+    #homeButton {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 10px;
+        font-size: 2.2rem;
+        color: #f0ff1f;
+        text-shadow: -2px 2px #e51e61;
+        text-decoration: none;
+        border: none;
+        font-weight: bold;
+        background-color: #2f2f2f;
+        box-shadow: -5px 5px #00AC7C;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #homeButton:hover {
+        background-color: #00AC7C;
+    }
+    #homeButton:active {
+        box-shadow: none;
+        transform: translateY(2px);
     }
     h1{
         color:#e51e61;
@@ -103,7 +127,10 @@
     }
 </style>
 <h1 th:text="'Ropa'"></h1>
-<section id="cards-container">
+
+<a id="homeButton" th:href="@{'/'}" href="">Inicio</a>
+
+<section id="cards-container" th:unless="${objectsMapped}">
     <div class="card" th:each="ropa : ${ropas}">
         <div class="img-card">
             <img th:src="${ropa.img}" src="" alt="proximamente">

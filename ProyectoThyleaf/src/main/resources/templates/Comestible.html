@@ -14,7 +14,31 @@
         justify-content:center;
         align-items:center;
         flex-direction:column;
-        background-color:#2f2f2f
+        background-color:#a0b07b;
+        position: relative;
+    }
+    #homeButton {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        padding: 10px;
+        font-size: 2.2rem;
+        color: #f0ff1f;
+        text-shadow: -2px 2px #e51e61;
+        text-decoration: none;
+        border: none;
+        font-weight: bold;
+        background-color: #2f2f2f;
+        box-shadow: -5px 5px #00AC7C;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #homeButton:hover {
+        background-color: #00AC7C;
+    }
+    #homeButton:active {
+        box-shadow: none;
+        transform: translateY(2px);
     }
     h1{
         color:#28c07b;
@@ -104,27 +128,8 @@
 
 </style>
 <h1 th:text="'Comestible'"></h1>
+<a id="homeButton" th:href="@{'/'}" href="">Inicio</a>
 <section id="cards-container">
-    <div class="card" th:each="comida : ${comidas}">
-        <div class="img-card">
-            <img th:src="${comida.img}" src="" alt="proximamente">
-        </div>
-        <div class="add-cart">Add to Cart</div>
-        <div class="info-card">
-            <p><strong th:text="${comida.nombre}"></strong></p>
-            <p th:text="'Price : ' + ${comida.precioBase} + '   ID: ' + ${comida.id}"></p>
-        </div>
-    </div>
-    <div class="card" th:each="comida : ${comidas}">
-        <div class="img-card">
-            <img th:src="${comida.img}" src="" alt="proximamente">
-        </div>
-        <div class="add-cart">Add to Cart</div>
-        <div class="info-card">
-            <p><strong th:text="${comida.nombre}"></strong></p>
-            <p th:text="'Price : ' + ${comida.precioBase} + '   ID: ' + ${comida.id}"></p>
-        </div>
-    </div>
     <div class="card" th:each="comida : ${comidas}">
         <div class="img-card">
             <img th:src="${comida.img}" src="" alt="proximamente">
