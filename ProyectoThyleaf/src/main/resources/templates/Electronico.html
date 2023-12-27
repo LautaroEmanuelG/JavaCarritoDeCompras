@@ -2,21 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link th:href="@{../static/card.css}" rel="stylesheet" />
+    <link th:href="@{../static/card.css}" rel="stylesheet"/>
     <title>Electronica</title>
 </head>
 <body>
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,900&display=swap');
-    body{
+
+    body {
         font-family: 'Roboto', sans-serif;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        flex-direction:column;
-        background-color:#919397;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #2f2f2f;
         position: relative;
     }
+
     #homeButton {
         position: absolute;
         top: 10px;
@@ -33,25 +35,30 @@
         border-radius: 5px;
         cursor: pointer;
     }
+
     #homeButton:hover {
         background-color: #00AC7C;
     }
+
     #homeButton:active {
         box-shadow: none;
         transform: translateY(2px);
     }
-    h1{
-        color:#0193ff;
+
+    h1 {
+        color: #0193ff;
         text-shadow: -2px 2px #f0ff1f;
         font-size: 3rem;
     }
-    #cards-container{
-        display:grid;
-        justify-content:center;
-        align-item:center;
-        grid-template-columns:repeat(4,1fr);
-        gap:16px
+
+    #cards-container {
+        display: grid;
+        justify-content: center;
+        align-item: center;
+        grid-template-columns:repeat(4, 1fr);
+        gap: 16px
     }
+
     .card {
         position: relative;
         width: 190px;
@@ -63,7 +70,7 @@
         display: flex;
         justify-content: center;
         cursor: pointer;
-        margin:8px
+        margin: 8px
     }
 
     .card:hover {
@@ -82,11 +89,13 @@
         align-items: center;
         transition: filter .2s 1s ease-in-out;
     }
-    .img-card img{
-        object-fit:cover;
-        width:100%;
-        height:100%;
+
+    .img-card img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
     }
+
     .card:hover .img-card {
         filter: blur(1px);
     }
@@ -128,19 +137,24 @@
 
 </style>
 <h1 th:text="'Electro'"></h1>
+
 <a id="homeButton" th:href="@{'/'}" href="">Inicio</a>
+
 <section id="cards-container">
     <div class="card" th:each="elect : ${electronicos}">
         <div class="img-card">
             <img th:src="${elect.img}" src="" alt="proximamente">
         </div>
-        <div class="add-cart">Add to Cart</div>
+        <form th:action="@{/addToCarrito}" method="post">
+            <input type="hidden" name="productId" th:value="${elect.id}"/>
+            <button class="add-cart" type="submit">Agregar al Carrito</button>
+        </form>
         <div class="info-card">
             <p><strong th:text="${elect.nombre}"></strong></p>
             <p th:text="'Price : ' + ${elect.precioBase} + '   ID: ' + ${elect.id}"></p>
         </div>
     </div>
 </section>
-
+<a th:href="@{'/carrito'}" href=""><h1>Carrito</h1></a>
 </body>
 </html>

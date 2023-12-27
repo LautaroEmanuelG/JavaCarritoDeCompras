@@ -1,10 +1,10 @@
 package com.cdf.ProyectoThyleaf.Moduls.Producto;
 
-public class Ropa extends Producto{
+public class Ropa extends Producto {
     private String talla;
 
     public Ropa(String nombre, int id, Double precioBase, String img, String talla) {
-        super(nombre, id, precioBase,  img);
+        super(nombre, id, precioBase, img);
         this.talla = talla;
     }
 

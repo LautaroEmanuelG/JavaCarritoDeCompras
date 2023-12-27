@@ -14,7 +14,7 @@
         justify-content:center;
         align-items:center;
         flex-direction:column;
-        background-color:#f31e00;
+        background-color:#2f2f2f;
         position: relative;
     }
     #homeButton {
@@ -130,7 +130,7 @@
 
 <a id="homeButton" th:href="@{'/'}" href="">Inicio</a>
 
-<section id="cards-container" th:unless="${objectsMapped}">
+<section id="cards-container">
     <div class="card" th:each="ropa : ${ropas}">
         <div class="img-card">
             <img th:src="${ropa.img}" src="" alt="proximamente">

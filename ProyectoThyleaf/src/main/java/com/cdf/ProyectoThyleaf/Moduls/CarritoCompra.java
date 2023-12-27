@@ -14,9 +14,11 @@ public class CarritoCompra {
     public CarritoCompra(Cliente cliente) {
         this.cliente = cliente;
     }
+
     public void agregarProducto(Producto producto) {
         productos.add(producto);
     }
+
     public double calcularTotal() {
         double total = 0;
         for (Producto producto : productos) {
@@ -28,8 +30,8 @@ public class CarritoCompra {
 
 
     //lista de productos agregados
-    public void mostrarProductos(){
-        for (Producto producto : productos){
+    public void mostrarProductos() {
+        for (Producto producto : productos) {
             System.out.println(producto);
         }
     }

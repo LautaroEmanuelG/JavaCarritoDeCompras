@@ -28,10 +28,11 @@ public class UsuarioController {
     ClienteRegular anonimo = new ClienteRegular("anonimo");
 
     CarritoCompra carritoAnonimo = new CarritoCompra(anonimo);
-        double getPrecioCarrito(){
-            carritoAnonimo.mostrarProductos();
-            return carritoAnonimo.calcularTotal();
-        }
+
+    double getPrecioCarrito() {
+        carritoAnonimo.mostrarProductos();
+        return carritoAnonimo.calcularTotal();
+    }
 
     @Autowired
     private List<Comestible> comidas;
@@ -44,9 +45,10 @@ public class UsuarioController {
 
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model) {
         return "index";
     }
+
     @PostMapping("/addToCarrito")
     public String addToCarrito(@RequestParam("productId") int productId, Model model, HttpServletRequest request) {
         Producto producto = encontrarProductoPorId(productId);
@@ -91,22 +93,25 @@ public class UsuarioController {
     }
 
     @GetMapping("/ropa")
-    public String home(Model model){
+    public String home(Model model) {
         model.addAttribute("ropas", ropas);
         return "Ropa";
     }
+
     @GetMapping("/electronico")
-    public String mapElectronico(Model model){
+    public String mapElectronico(Model model) {
         model.addAttribute("electronicos", electronicos);
         return "electronico";
     }
+
     @GetMapping("/comida")
-    public String mapComida(Model model){
+    public String mapComida(Model model) {
         model.addAttribute("comidas", comidas);
         return "comestible";
     }
-    @GetMapping ("/carrito")
-    public String carrito(Model model){
+
+    @GetMapping("/carrito")
+    public String carrito(Model model) {
         model.addAttribute("carrito", carritoAnonimo.getProductos());
         model.addAttribute("total", getPrecioCarrito());
         return "carrito";

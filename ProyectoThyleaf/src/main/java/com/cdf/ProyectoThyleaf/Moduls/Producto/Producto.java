@@ -7,7 +7,8 @@ public class Producto implements Vendible {
     private int id;
     private Double precioBase;
     private String img;
-    public Producto(String nombre, int id,  Double precioBase , String img) {
+
+    public Producto(String nombre, int id, Double precioBase, String img) {
         this.nombre = nombre;
         this.img = img;
         this.precioBase = precioBase;

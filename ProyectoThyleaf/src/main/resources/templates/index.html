@@ -6,48 +6,97 @@
     <title>Tienda</title>
 </head>
 <body>
-   <style>
-       @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,900&display=swap');
-       body{
-           font-family: 'Roboto', sans-serif;
-           display:flex;
-           justify-content:space-evenly;
-           align-items:center;
-           flex-wrap: wrap;
-           flex-direction: column;
-           background-color:#2f2f2f;
-           gap:3rem;
-       }
-       body>div{
-           display:flex;
-           justify-content:space-evenly;
-           align-items:center;
-           flex-wrap: wrap;
-           flex-direction: row;
-           width: 100%;
-       }
-       h1{
-           color:#f2f2f2;
-           box-shadow: -5px 5px #fffb70;
-           font-size: 3rem;
-       }
-       a{
-              text-decoration: none;
-              color: #f2f2f2;
-              font-size: 2rem;
-           transition: font-size .2s ease-in-out,
-           color .2s ease-in-out;
-       }
-       a:hover{
-           color:#e51e61;
-           font-size: 2.1rem;
-       }
-   </style>
-   <h1>Tienda</h1>
-   <div>
-       <a th:href="@{'/comida'}" href="">Comida</a>
-       <a th:href="@{'/ropa'}" href="">Ropa</a>
-       <a th:href="@{'/electronico'}" href="">Electro</a>
-   </div>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,900&display=swap');
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: column;
+        background-color: #2f2f2f;
+        gap: 3rem;
+    }
+
+    body > div {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    h1 {
+        color: #333333;
+        text-shadow: -3px 3px #e51e61;
+        font-size: 5rem;
+        background-color: #f2f2f2;
+        border-radius: 10px;
+        padding: 1rem;
+    }
+    h2{
+        font-size: 3.5rem;
+    }
+    .comida {
+        color: #28c07b;
+        text-shadow: -2px 2px #fb9398;
+    }
+
+    .ropa {
+        color: #e51e61;
+        text-shadow: -2px 2px #fffb70;
+    }
+
+    .electro {
+        color: #aa42df;
+        text-shadow: -2px 2px #4bcfff;
+    }
+
+    /* Efecto de hover para .comida */
+    .comida:hover {
+        color: #1a8c6d;
+        text-shadow: -5px 5px #d93645;
+    }
+
+    /* Efecto de hover para .ropa */
+    .ropa:hover {
+        color: #a92dd9;
+        text-shadow: -5px 5px #ffdd33;
+    }
+
+    /* Efecto de hover para .electro */
+    .electro:hover {
+        color: #6a12cc;
+        text-shadow: -5px 5px #1f7bb8;
+    }
+
+    /* Efecto active para .comida */
+    .comida:active {
+        color: #0f5944;
+        text-shadow: -3px 3px #a82735;
+    }
+
+    /* Efecto active para .ropa */
+    .ropa:active {
+        color: #7a1e8e;
+        text-shadow: -3px 3px #ccaa22;
+    }
+
+    /* Efecto active para .electro */
+    .electro:active {
+        color: #3e0b66;
+        text-shadow: -3px 3px #0d4d7b;
+    }
+
+</style>
+<h1>Tienda</h1>
+<div>
+    <a th:href="@{'/comida'}" href=""><h2 class="comida">Comida</h2></a>
+    <a th:href="@{'/ropa'}" href=""><h2 class="ropa">Ropa</h2></a>
+    <a th:href="@{'/electronico'}" href=""><h2 class="electro">Electro</h2></a>
+</div>
 </body>
 </html>
