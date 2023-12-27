@@ -11,6 +11,6 @@ public class ClientePremium implements Cliente{
 
     @Override
     public double realizarCompra(Vendible producto) {
-        return producto.calcularPrecio() *0.9;
+        return producto.calcularPrecio() *0.8;
     }
 }

@@ -3,19 +3,23 @@ package com.cdf.ProyectoThyleaf.Moduls.Producto;
 import com.cdf.ProyectoThyleaf.Moduls.Vendible;
 
 public class Producto implements Vendible {
-    String nombre;
-    String img;
-    int stock;
-    Double precioBase;
-    @Override
-    public Double calcularPrecio() {
-        return precioBase;
-    }
-    public Producto(String nombre, String img, int stock, Double precioBase) {
+    private String nombre;
+    private int id;
+    private Double precioBase;
+    private String img;
+    public Producto(String nombre, int id,  Double precioBase , String img) {
         this.nombre = nombre;
         this.img = img;
-        this.stock = stock;
         this.precioBase = precioBase;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -34,19 +38,16 @@ public class Producto implements Vendible {
         this.img = img;
     }
 
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
     public Double getPrecioBase() {
         return precioBase;
     }
 
     public void setPrecioBase(Double precioBase) {
         this.precioBase = precioBase;
+    }
+
+    @Override
+    public double calcularPrecio() {
+        return precioBase;
     }
 }
