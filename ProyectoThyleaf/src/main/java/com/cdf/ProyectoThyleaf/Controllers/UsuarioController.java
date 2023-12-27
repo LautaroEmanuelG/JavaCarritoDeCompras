@@ -1,16 +1,18 @@
 package com.cdf.ProyectoThyleaf.Controllers;
 
 
+import com.cdf.ProyectoThyleaf.Moduls.CarritoCompra;
+import com.cdf.ProyectoThyleaf.Moduls.Cliente.ClienteRegular;
 import com.cdf.ProyectoThyleaf.Moduls.Producto.Comestible;
 import com.cdf.ProyectoThyleaf.Moduls.Producto.Electronico;
+import com.cdf.ProyectoThyleaf.Moduls.Producto.Producto;
 import com.cdf.ProyectoThyleaf.Moduls.Producto.Ropa;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -20,6 +22,10 @@ public class UsuarioController {
         List<Comestible> comidas = new ArrayList<>();
         List<Electronico> electronicos = new ArrayList<>();
         List<Ropa> ropas = new ArrayList<>();
+
+        ClienteRegular anonimo = new ClienteRegular("anonimo");
+
+        CarritoCompra carritoAnonimo = new CarritoCompra(anonimo);
 
         List<Comestible> getListComestible() {
             comidas.add(new Comestible("Manzana", 1, 30.0, "https://imgs.search.brave.com/t0EyvlqLWe3J7cPBikIGFtuydN1-Qf3-EmZ9c3K2IvA/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/ZnJlZXBpay5jb20v/Zm90b3MtcHJlbWl1/bS9tYW56YW5hLXJv/amEtZ290YXMtYWd1/YV83NzcwNzgtMTE5/OTcuanBnP3NpemU9/NjI2JmV4dD1qcGc", "Manzana roja"));
@@ -45,6 +51,57 @@ public class UsuarioController {
             return ropas;
         }
 
+        double getPrecioCarrito(){
+            carritoAnonimo.mostrarProductos();
+            return carritoAnonimo.calcularTotal();
+        }
+
+    @GetMapping("/")
+    public String index(Model model){
+        model.addAttribute("comidas", getListComestible());
+        model.addAttribute("electronicos", getListElectronico());
+        model.addAttribute("ropas", getListRopa());
+        return "index";
+    }
+    @PostMapping("/addToCarrito")
+    public String addToCarrito(@RequestParam("productId") int productId, Model model) {
+        Producto producto = encontrarProductoPorId(productId);
+        addToCart(producto); // Agrega el producto al carrito
+        model.addAttribute("mensaje", "Producto agregado al carrito: " + producto.getNombre());
+        return "redirect:/ropa"; // Redirige de nuevo a la página de ropa
+    }
+
+    private Producto encontrarProductoPorId(int productId) {
+        // Implementa la lógica para encontrar el producto por su ID
+        // Buscar en la lista de comidas
+        for (Comestible comida : comidas) {
+            if (comida.getId() == productId) {
+                return comida;
+            }
+        }
+
+        // Buscar en la lista de electronicos
+        for (Electronico electronico : electronicos) {
+            if (electronico.getId() == productId) {
+                return electronico;
+            }
+        }
+
+        // Buscar en la lista de ropas
+        for (Ropa ropa : ropas) {
+            if (ropa.getId() == productId) {
+                return ropa;
+            }
+        }
+
+        // Si no se encuentra el producto, puedes lanzar una excepción o devolver null
+        throw new IllegalArgumentException("Producto no encontrado con ID: " + productId);
+    }
+
+    private void addToCart(Producto producto) {
+        carritoAnonimo.agregarProducto(producto);
+    }
+
     @GetMapping("/ropa")
     public String home(Model model){
         model.addAttribute("ropas", getListRopa());
@@ -59,5 +116,11 @@ public class UsuarioController {
     public String mapComida(Model model){
         model.addAttribute("comidas", getListComestible());
         return "comestible";
+    }
+    @GetMapping ("/carrito")
+    public String carrito(Model model){
+        model.addAttribute("carrito", carritoAnonimo.getProductos());
+        model.addAttribute("total", getPrecioCarrito());
+        return "carrito";
     }
 }
