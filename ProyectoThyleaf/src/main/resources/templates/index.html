@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Cascadia Code", sans-serif;
+        }
+        .contenedor{
+            display: flex;
+            flex-direction: column;
+            margin: 10px auto;
+            align-items: center;
+            justify-content: center;
+        }
+        .contenedor h1{
+            text-align: center;
+            font-size: 2rem;
+            margin: 10px;
+        }
+        .contenedor h2{
+            text-align: center;
+            font-size: 1.5rem;
+            margin: 10px;
+        }
+        .lista{
+            align-content: center;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #000;
+            border-radius: 10px;
+            margin:20px;
+        }
+        .li-nombre{
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .lista img{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <h1>Lista Verduleria</h1>
+        <h2 th:text="${#calendars.format(fecha,'dd/MM/yyyy')}"></h2>
+        <ul class="lista" th:each="fruta: ${frutas}">
+            <li class="li-nombre" th:text="${fruta.nombre}"></li>
+            <li><img th:src="${fruta.img}" th:alt="${fruta.nombre}"/></li>
+            <li th:text="${fruta.stock}"></li>
+        </ul>
+    </div>
+</body>
+</html>
